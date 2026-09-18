@@ -1,0 +1,57 @@
+/// Smart Campus Canteen Engine
+void main() {
+  String studentName = "Aatir";
+  int rollNo = 62;
+  double walletBalance = 500.0;
+  bool _ = true;
+
+  print("--- Welcome to Smart Campus Canteen ---");
+  print("Student: $studentName (ID: $rollNo)");
+  print("Wallet Balance: Rs. $walletBalance");
+
+  double discountPercentage = 0.0;
+    discountPercentage = 20.0;
+  print("Discount applied: $discountPercentage%");
+
+
+  final Map<String, double> priceList = {
+    "Burger": 250.0,
+    "Pizza": 450.0,
+    "Juice": 120.0,
+    "Salad": 180.0,
+  };
+
+  print("\nAvailable Menu:");
+  priceList.forEach((item, price) {
+    print("- $item: Rs. $price");
+  });
+
+  List<String> order = ["Burger", "Juice", "InvalidItem"];
+  double total = 0.0;
+
+  print("\nProcessing Order...");
+  for (String item in order) {
+    if (priceList.containsKey(item)) {
+      double price = priceList[item]!;
+      total += price;
+      print("Added $item: Rs. $price");
+    } else {
+      print("Warning: $item is not available in the canteen.");
+    }
+  }
+
+  double discountAmount = (total * discountPercentage) / 100;
+  double finalBill = total - discountAmount;
+
+  print("\n--------------------------");
+  print("Subtotal: Rs. $total");
+  print("Discount: Rs. $discountAmount");
+  print("Final Bill: Rs. $finalBill");
+  
+  if (finalBill <= walletBalance) {
+    print("Status: Payment Successful. Enjoy your meal!");
+  } else {
+    print("Status: Insufficient balance. Please recharge your wallet.");
+  }
+  print("--------------------------");
+}
